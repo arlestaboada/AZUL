@@ -1,0 +1,549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+                <style>
+                    .ui-radiobutton .ui-radiobutton-box {
+                        background: white;
+                    }
+                </style>
+
+
+                <h:form id="formEvaluar">
+
+                    <p:growl id="mensajes"/> 
+
+                    <p:tabView>
+                        <p:tab title="Información de la Practica Ambiental">
+
+
+
+                            <p:panelGrid id="gridBasicData" columns="1"  styleClass="tableTotal">	
+
+                                <f:facet name="header">
+                                    <h:outputText value="Información de la Practica Ambiental" />
+                                </f:facet>
+
+                                <p:panel id="pnlInfoBasic" widgetVar="_pnlInfoBasic">
+                                    <p:panelGrid columns="1"  styleClass="tableTotal"
+                                                 style="text-align: center;">
+
+                                        <p:panelGrid columns="1" styleClass="tableTotal">
+
+                                            <f:facet name="header">
+                                                <h:outputText value="A. DATOS DE LA PRACTICA AMBIENTAL" />
+                                            </f:facet>
+
+                                            <p:panelGrid columns="1" styleClass="tableMediumTotal" >
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="1. Tema(s):" />
+                                                </f:facet>
+                                                <p:selectOneRadio  id="cmbCategoria" value="#{BKPracticas.practicas.temas}" layout="grid" columns="3">
+                                                    <f:selectItem itemLabel="Biodiversidad" itemValue="1" />
+                                                    <f:selectItem itemLabel="Residuos Sólidos" itemValue="2" />
+                                                    <f:selectItem itemLabel="Energía" itemValue="3" />
+                                                    <f:selectItem itemLabel="Agua" itemValue="4" />
+                                                    <f:selectItem itemLabel="Aire" itemValue="5" />
+                                                    <f:selectItem itemLabel="Otros" itemValue="6" />
+                                                </p:selectOneRadio >
+                                                <p:inputText id="txtOtros" value="#{BKPracticas.practicas.temasOtros}" styleClass="textLabel12" 
+                                                             maxlength="50">
+                                                    <p:watermark for="txtOtros" value="Otros" />                                            
+                                                </p:inputText>
+
+
+                                            </p:panelGrid>
+
+                                            <p:panelGrid columns="1" styleClass="tableMediumTotal" >
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="2. Titulo:" />
+                                                </f:facet>
+
+                                                <p:inputText id="txtTitulo" value="#{BKPracticas.practicas.titulo}" styleClass="textLabel12" 
+                                                             style="width: 100%"  maxlength="50"
+                                                             requiredMessage="Campo es requerido.">
+                                                    <p:watermark for="txtTitulo" value="Titulo" />
+                                                </p:inputText>
+                                                <p:tooltip for="txtTitulo" value="Nombres" showEffect="fade" hideEffect="fade" />
+                                            </p:panelGrid>
+
+                                            <p:panelGrid columns="1" styleClass="tableMediumTotal" >
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="3. Lugar donde realizaste la práctica Ambiental:" />
+                                                </f:facet>
+
+
+                                            </p:panelGrid>
+
+                                            <p:panelGrid columns="2" styleClass="tableMediumTotal">
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="4. Estado de la Practica Ambiental:" />
+                                                </f:facet> 
+
+                                                <p:outputLabel value="Estado de la Practica Ambiental"/>
+                                                <p:selectOneRadio  id="cmbEstado" value="#{BKPracticas.practicas.estado}" layout="grid" columns="3">
+                                                    <f:selectItem itemLabel="En desarrollo" itemValue="1" />
+                                                    <f:selectItem itemLabel="Finalizada" itemValue="2" />                                  
+                                                </p:selectOneRadio >
+                                            </p:panelGrid>	
+
+                                            <p:panelGrid columns="2" styleClass="tableMediumTotal">
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="5. Tiempo:" />
+                                                </f:facet> 
+
+                                                <p:outputLabel value="Tiempo"/>
+                                                <p:panelGrid columns="2" styleClass="tableMediumTotal">
+                                                    <p:calendar id="calFechaInicio" value="#{BKPracticas.practicas.fechaIni}"
+                                                                navigator="true" pattern="dd/MM/yyyy"
+                                                                readonlyInput="true" style="width: 30%" 
+                                                                requiredMessage="Campo es requerido."
+                                                                mindate="1/1/1950" showOn="button">
+                                                        <p:watermark for="calFechaInicio" value="Fecha Inicio" />
+                                                    </p:calendar>		
+                                                    <p:tooltip for="calFechaInicio" value="Fecha Inicio" showEffect="fade" hideEffect="fade" />
+
+                                                    <p:calendar id="calFechaFin" value="#{BKPracticas.practicas.fechaFin}"
+                                                                navigator="true" pattern="dd/MM/yyyy"
+                                                                readonlyInput="true" style="width: 30%" 
+                                                                requiredMessage="Campo es requerido."
+                                                                mindate="1/1/1950" showOn="button">
+                                                        <p:watermark for="calFechaFin" value="Fecha Fin" />
+                                                    </p:calendar>		
+                                                    <p:tooltip for="calFechaFin" value="Fecha Fin" showEffect="fade" hideEffect="fade" />
+                                                </p:panelGrid>	
+
+                                            </p:panelGrid>	
+
+                                            <p:panelGrid columns="4" styleClass="tableMediumTotal">
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="6. Cuantas personas participaron en la práctica ambiental:" />
+                                                </f:facet> 
+                                                <p:outputLabel value="Cuantas personas participaron en la práctica ambiental:"/>
+                                                <p:inputText id="txtPersonas" value="#{BKPracticas.practicas.nropersonas}" styleClass="textLabel12" 
+                                                             style="width: 100%"  maxlength="50"
+                                                             requiredMessage="Campo es requerido.">
+                                                    <p:watermark for="txtPersonas" value="Nro Personas" />
+                                                </p:inputText>
+                                                <p:outputLabel value="personas"/>
+                                                <p:tooltip for="txtPersonas" value="Personas" showEffect="fade" hideEffect="fade" />
+                                            </p:panelGrid>	                       
+
+                                        </p:panelGrid>
+
+                                        <p:panelGrid columns="1" styleClass="tableTotal" >
+
+                                            <f:facet name="header">
+                                                <h:outputText value="Resumen de la Experiencia" />
+                                            </f:facet>
+
+                                            <p:panelGrid id="gridExpDescripcion" columns="1" styleClass="tableTotal">                            
+                                                <h:outputText value="1. Descripción corta de la practica desarrollada" />
+                                                <h:outputText value="(¿Qué hiciste?, ¿por qué lo hiciste?, ¿a quíen querías ayudar?, ¿quiénes te ayudaron?)(Máximo 100 palabras)" />
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.expDescripcion}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtExpDescripcion"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridExpDescripcion" value="Descripción de la Experiencia" showEffect="fade" hideEffect="fade" />
+
+                                            <p:panelGrid id="gridExpResultado" columns="1" styleClass="tableTotal">                            
+                                                <h:outputText value="2. Resultados, enumera tus logros" />                            
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.expResultados}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtExpResultados"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridExpResultado" value="Resultados de la Experiencia" showEffect="fade" hideEffect="fade" />
+
+
+                                        </p:panelGrid>
+
+
+                                        <p:panelGrid columns="1" styleClass="tableTotal" >
+
+                                            <f:facet name="header">
+                                                <h:outputText value="Descripción de la practica ambiental" />
+                                            </f:facet>
+
+                                            <p:panelGrid id="gridPraProblema" columns="1" styleClass="tableTotal">                            
+                                                <h:outputText value="1. Descripción corta de la practica desarrollada" />                            
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.praProblema}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtPraProblema"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="txtPraProblema" value="Practica Problema" showEffect="fade" hideEffect="fade" />
+
+                                            <p:panelGrid id="gridExpComparte" columns="1" styleClass="tableTotal">                            
+                                                <h:outputText value="2. Compartiste tu práctica ambiental con:" />  
+                                                <p:panelGrid columns="2">
+                                                    <p:selectOneRadio  id="cmbPraComparte" value="#{BKPracticas.practicas.praComparte}" layout="grid" columns="4">
+                                                        <f:selectItem itemLabel="Familiares" itemValue="1" />
+                                                        <f:selectItem itemLabel="Vecinos" itemValue="2" />                                  
+                                                        <f:selectItem itemLabel="Compañeros de Estudio" itemValue="3" />                                  
+                                                        <f:selectItem itemLabel="Otros" itemValue="4" />                                  
+                                                    </p:selectOneRadio >
+                                                    <p:inputText id="txtPraComparteOtros" value="#{BKPracticas.practicas.praComparteOtro}" styleClass="textLabel12" 
+                                                                 size="20" maxlength="50">
+                                                        <p:watermark for="txtPraComparteOtros" value="Otros" />
+                                                    </p:inputText>
+                                                </p:panelGrid>
+                                                <h:outputText value="¿Cómo compartiste tu práctica ambiental? (Máximo 80 palabras)" />
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.praComparteDes}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtPraComparte"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridExpComparte" value="Practica Comparte" showEffect="fade" hideEffect="fade" />
+
+
+                                            <p:panelGrid id="gridPraApoyo" columns="1" styleClass="tableTotal">  
+                                                <h:outputText value="3. Quiénes te apoyaron:" />  
+                                                <p:panelGrid columns="2">
+                                                    <p:selectOneRadio  id="cmbPraApoyo" value="#{BKPracticas.practicas.praApoyo}" layout="grid" columns="4">
+                                                        <f:selectItem itemLabel="Familiares" itemValue="1" />
+                                                        <f:selectItem itemLabel="Docentes" itemValue="2" />                                  
+                                                        <f:selectItem itemLabel="Compañeros de Estudio" itemValue="3" />                                  
+                                                        <f:selectItem itemLabel="Otros" itemValue="4" />                                  
+                                                    </p:selectOneRadio >
+                                                    <p:inputText id="txtPraApoyoOtros" value="#{BKPracticas.practicas.praApoyoDes}" styleClass="textLabel12" 
+                                                                 size="20" maxlength="50">
+                                                        <p:watermark for="txtPraComparteOtros" value="Otros" />
+                                                    </p:inputText>
+                                                </p:panelGrid>
+                                                <h:outputText value="¿Cómo compartiste tu práctica ambiental? (Máximo 80 palabras)" />
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.praApoyoDes}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtPraApoyoDes"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridPraApoyo" value="Practica Apoyo" showEffect="fade" hideEffect="fade" />
+
+
+                                            <p:panelGrid id="gridPraSustento" columns="1" styleClass="tableTotal">  
+                                                <h:outputText value="4. ¿Cómo ayudo la practica ambiental a la mejora del entorno donde se realizó? y ¿qué evidencias demuestran esas mejoras? " />                             
+                                                <h:outputText value="(Máximo 80 palabras)" />
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.praSustento}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtPraSustento"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridPraSustento" value="Demostrar las mejoras" showEffect="fade" hideEffect="fade" />
+
+
+                                            <p:panelGrid id="gridPraMejora" columns="1" styleClass="tableTotal">  
+                                                <h:outputText value="5. ¿Consideras que tu práctica ambiental es novedosa en contenido y/o metodología?  " />                                                       
+                                                <p:inputTextarea autoResize="true" value="#{BKPracticas.practicas.praMejora}"
+                                                                 maxlength="500" style="width: 99%; height: 150px" id="txtPraMejora"
+                                                                 rows="5"  requiredMessage="Campo es requerido."/>                           
+                                            </p:panelGrid>
+                                            <p:tooltip for="gridPraMejora" value="Lo novedoso de tu practica ambiental" showEffect="fade" hideEffect="fade" />
+
+
+                                        </p:panelGrid>
+
+
+                                        <p:panelGrid columns="1" styleClass="tableTotal" >
+
+                                            <f:facet name="header">
+                                                <h:outputText value="Evidencias" />                           
+                                            </f:facet>
+
+                                            <h:outputText value="Foto Representativa de la Buena Práctica  " />
+
+
+                                            <p:panel id="pnlPhoto" widgetVar="_pnlPhoto" >            
+                                                <p:panelGrid columns="1" styleClass="tableFoto" id="gridPhoto" >
+                                                    <h:panelGroup style="display:block; text-align:center">
+
+                                                        <p:graphicImage id="imgProfile" value="#{MBEvaluar.file}" height="600" width="800"
+                                                                        cache="false"/>
+
+
+
+                                                    </h:panelGroup>                               
+
+                                                    <p:inputText id="txtEviVideo" value="#{BKPracticas.practicas.evdVideo}" styleClass="textLabel12" 
+                                                                 style="width: 100%"  maxlength="50"
+                                                                 requiredMessage="Campo es requerido.">
+                                                        <p:watermark for="txtEviVideo" value="Link de Video o Página Web" />
+                                                    </p:inputText>
+
+
+
+                                                </p:panelGrid>	
+                                            </p:panel>
+                                            <p:dataTable id="dataTablaDocumentos" var="documento"
+                                                         value="#{BKPracticasDocumentos.listaAdjuntos}" widgetVar="listaDocumentos"
+                                                         emptyMessage="No se encontraron documentos" 
+                                                         filteredValue="" rowIndexVar="rowIndex" paginator="true" rows="10"
+                                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15">
+
+                                                <f:facet name="header">  
+                                                    <h:outputText value="Documentos Adjuntos" />  
+
+                                                </f:facet>  
+
+
+                                                <p:column id="idColumnaNum" style="width: 5%">
+                                                    <f:facet name="header">  
+                                                        <h:outputText value="Num" />  
+                                                    </f:facet>  
+                                                    <h:outputText value="#{rowIndex+1}" />
+                                                </p:column>
+
+                                                <p:column id="idColumnaDocumento" style="width: 50%" >
+                                                    <f:facet name="header">  
+                                                        <h:outputText value="Documento" />  
+                                                    </f:facet>  
+                                                    <h:outputText value="#{documento.nombre}" />
+                                                </p:column>
+
+                                                <p:column id="idColumnaTipo" style="width: 10%" >
+                                                    <f:facet name="header">  
+                                                        <h:outputText value="Tipo" />  
+                                                    </f:facet>  
+                                                    <h:outputText value="#{documento.extension}" />
+                                                </p:column>
+
+
+                                                <p:column id="idColumnaAcciones" style="width: 10%"  headerText="#{message['general.label.tipoAcesso']}" exportable="false" >   
+                                                    <p:commandButton id="btnEditar" icon="ui-icon-arrowthick-1-s" title="#{message['general.button.descargar']}" action="#{MBEvaluar.descargarArchivos()}"  ajax="false" >
+                                                        <f:setPropertyActionListener value="#{documento}" target="#{BKPracticasDocumentos.practicasDocumentoSeleccionado}" />  
+                                                        <p:fileDownload value="#{BKPracticasDocumentos.reporte}" />  
+                                                    </p:commandButton>    
+
+                                                </p:column>
+
+
+                                            </p:dataTable>   
+
+                                        </p:panelGrid>
+
+                                        <p:panelGrid columns="1" styleClass="tableMediumTotal" >
+
+                                            <f:facet name="header">
+                                                <h:outputText value="2. Instituciones que reconocen tu práctica ambiental:" />
+                                            </f:facet>
+
+                                            <h:outputText value="1. ¿Tu práctica ambiental ha sido reconocida por alguna institución?" />
+
+                                            <p:inputText id="txtInstitucion" value="#{BKPracticas.practicas.insInstitucion}" styleClass="textLabel12" 
+                                                         style="width: 100%"  maxlength="50"
+                                                         requiredMessage="Campo es requerido.">
+                                                <p:watermark for="txtTitulo" value="Institucion" />
+                                            </p:inputText>
+                                            <p:tooltip for="txtInstitucion" value="Nombre de Institución" showEffect="fade" hideEffect="fade" />
+                                        </p:panelGrid>
+
+                                        <p:panelGrid  styleClass="tableMediumTotal" >
+
+                                            <f:facet name="header">
+                                                <p:row>
+                                                    <p:column colspan="2">
+                                                        <h:outputText value="F. Personas que respaldan tu práctica ambiental:" />
+                                                    </p:column>                            
+                                                </p:row>
+
+                                            </f:facet>
+
+                                            <p:row>
+                                                <p:column colspan="2">
+                                                    <h:outputText value="(Personas reconocidas por la comunidad representantes de asociaciones locales, iglesia, institución educativa, etc)" />
+                                                </p:column>                            
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column width="80%">
+                                                    <p:inputText id="txtPersona1" value="#{BKPracticas.practicas.persona1}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="50">
+                                                        <p:watermark for="txtPersona1" value="Nombre" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtPersona1" value="Nombres persona" showEffect="fade" hideEffect="fade" />
+                                                </p:column>
+                                                <p:column width="20%">
+                                                    <p:inputText id="txtDNI1" value="#{BKPracticas.practicas.dni1}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="8">
+                                                        <p:watermark for="txtDNI1" value="DNI" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtDNI1" value="DNI " showEffect="fade" hideEffect="fade" />
+                                                </p:column>
+
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column colspan="2">
+                                                    <p:inputText id="txtInstitucion1" value="#{BKPracticas.practicas.institucion1}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="50">
+                                                        <p:watermark for="txtInstitucion1" value="Institucion" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtInstitucion1" value="Institucion" showEffect="fade" hideEffect="fade" />
+                                                </p:column>                            
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column colspan="2">
+                                                    <br/>
+
+                                                </p:column>                            
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column width="80%">
+                                                    <p:inputText id="txtPersona2" value="#{BKPracticas.practicas.persona2}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="50">
+                                                        <p:watermark for="txtPersona2" value="Nombre" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtPersona2" value="Nombres persona" showEffect="fade" hideEffect="fade" />
+                                                </p:column>
+                                                <p:column width="20%">
+                                                    <p:inputText id="txtDNI2" value="#{BKPracticas.practicas.dni2}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="8">
+                                                        <p:watermark for="txtDNI1" value="DNI" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtDNI2" value="DNI " showEffect="fade" hideEffect="fade" />
+                                                </p:column>
+
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column colspan="2">
+                                                    <p:inputText id="txtInstitucion2" value="#{BKPracticas.practicas.institucion2}" styleClass="textLabel12" 
+                                                                 style="width: 100%" maxlength="50">
+                                                        <p:watermark for="txtInstitucion2" value="Institucion" />
+                                                    </p:inputText>
+                                                    <p:tooltip for="txtInstitucion2" value="Institucion" showEffect="fade" hideEffect="fade" />
+                                                </p:column>                            
+                                            </p:row>
+
+                                        </p:panelGrid>
+
+
+
+
+
+                                    </p:panelGrid>
+                                </p:panel>		
+                            </p:panelGrid>
+
+                        </p:tab>
+
+                        <p:tab title="Evaluar Buena Práctica">
+
+
+                            <p:panelGrid>   
+                                <f:facet name="header">
+                                    <p:row>
+                                        <p:column colspan="3">
+                                            <h:outputText value="PUNTAJE" />
+                                        </p:column>                            
+                                    </p:row>
+                                </f:facet>
+                                <p:row>
+                                    <p:column style="text-align: center">
+                                        <h:outputText value="0" style="font-weight: 600"/> 
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <h:outputText value="1" style="font-weight: 600"/> 
+                                    </p:column>
+                                    <p:column style="text-align: center">
+                                        <h:outputText value="2" style="font-weight: 600"/> 
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <h:outputText value="Cuando la información presentada en el formulario y anexos no evidencia el cumplimiento del indicador" /> 
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="Cuando la informacón presentada en el formulario y anexos evidencia el cumplimiento parcial del indicador" /> 
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="Cuando la informacón presentada en el formulario y anexos evidencia el cumplimiento  del indicador" /> 
+                                    </p:column>
+                                </p:row>
+
+
+                            </p:panelGrid>
+
+                            <p:panel header="Cirterios de Evaluación/ Indicadores" >
+
+                                <p:growl id="growl" showDetail="true" severity="info,fatal" />
+
+
+                                <p:dataTable id="tblIndicadores" paginator="true" rows="10"                                  
+                                             value="#{BKEvaluar.listaEvaluar}"
+                                             var="registro">						
+                                    <p:column headerText="Criterio"  width="20%">
+                                        <h:outputText value="#{registro.criterio}"/>
+                                    </p:column>
+                                    <p:column headerText="Numero"  width="10%">
+                                        <h:outputText value="#{registro.numero}"/>
+                                    </p:column>
+                                    <p:column headerText="Indicador"  width="60%">
+                                        <h:outputText value="#{registro.indicador}"/>                                                    
+                                    </p:column>
+
+                                    <p:column headerText="Puntaje"  width="10%" >
+                                        <p:selectOneMenu  id="cmbEvaluar" value="#{registro.valor}"  style="width: 50px ">
+                                            <f:selectItem itemLabel="0" itemValue="0" />
+                                            <f:selectItem itemLabel="1" itemValue="1" />                                  
+                                            <f:selectItem itemLabel="2" itemValue="2" />                                                  
+                                        </p:selectOneMenu>                                        
+                                    </p:column>
+                                    <f:facet name="footer" >
+                                        <p:column style="text-align:right">
+                                            <h:outputText value="Total:" />
+                                        </p:column>
+
+                                    </f:facet>
+
+                                </p:dataTable>
+
+                                <br/>
+                                <p:commandButton value="Guardar" action="#{MBEvaluar.guardar()}" process="@this,tblIndicadores" ajax="false"/>
+                                <p:commandButton value="Finalizar" action="#{MBEvaluar.actualizar()}"/>
+                                <p:commandButton value="Re-Evaluar" action="#{MBEvaluar.actualizar()}"/>
+
+
+                            </p:panel>
+                        </p:tab>
+
+                    </p:tabView>
+
+                </h:form>
+
+                <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>  
+
+                <p:dialog modal="true" widgetVar="statusDialog" appendTo="@(body)"
+                          header="Procesando... Expere por favor !!" draggable="false" 
+                          closable="false" resizable="false">  
+                    <p:graphicImage value="/resources/images/loadingbar.gif" />			    
+                </p:dialog>
+
+                <script type="text/javascript">
+                    function start() {
+                        statusDialog.show();
+                    }
+
+                    function stop() {
+                        statusDialog.hide();
+                    }
+                </script>
+
+
+            </f:view>
+        </ui:define>
+    </ui:composition>
+
+
+</html>

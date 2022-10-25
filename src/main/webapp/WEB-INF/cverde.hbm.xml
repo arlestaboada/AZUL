@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+
+
+      
+    <mapping class="pe.gob.minam.sistema.entidades.Usuario"/>
+    <mapping class="pe.gob.minam.sistema.entidades.Rol"/>
+    <mapping class="pe.gob.minam.sistema.entidades.Menu"/>
+    <mapping class="pe.gob.minam.sistema.entidades.MenuRol"/>
+    <mapping class="pe.gob.minam.sistema.entidades.MenuRolPK"/>       
+    <mapping class="pe.gob.minam.sistema.entidades.Instituciones"/>
+    <mapping class="pe.gob.minam.sistema.entidades.UsuarioDocumentos"/>
+    <mapping class="pe.gob.minam.sistema.entidades.UsuarioFiles"/>
+    <mapping class="pe.gob.minam.sistema.entidades.Correos"/>
+    <mapping class="pe.gob.minam.sistema.entidades.CorreosDocumentos"/>  
+    
+    <mapping class="pe.gob.minam.sistema.entidades.Postulante"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.PostulanteDocumentos"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.PostulanteDocumentosFiles"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.PostulanteUsuario"/>
+    <mapping class="pe.gob.minam.sistema.entidades.Postulante"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.Practicas"/>   
+    <mapping class="pe.gob.minam.sistema.entidades.PracticasDocumentos"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.PracticasDocumentosFiles"/>  
+    <mapping class="pe.gob.minam.sistema.entidades.Indicadores"/> 
+    <mapping class="pe.gob.minam.sistema.entidades.Criterios"/>
+    <mapping class="pe.gob.minam.sistema.entidades.Evaluar"/>
+    
+     
+    
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	<context:component-scan base-package="pe.gob.minam.seguridad" />
+    	<sec:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" jsr250-annotations="enabled" />
+    	
+	<sec:http auto-config="true" use-expressions="true">
+                <sec:intercept-url pattern="/login.xhtml" access="permitAll"/>
+                <sec:intercept-url pattern="/javax.faces.resource/primefaces.css.xhtml?ln=primefaces" access="permitAll"/>
+                <sec:intercept-url pattern="/javax.faces.resource/jquery/jquery.js.xhtml?ln=primefaces" access="permitAll"/>
+                <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-bluesky" access="permitAll"/>
+                <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-redmond" access="permitAll"/>
+                 <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-south-street" access="permitAll"/>
+                 <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-afterwork" access="permitAll"/>
+                  <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-le-frog" access="permitAll"/>
+                  <sec:intercept-url pattern="/javax.faces.resource/theme.css?ln=primefaces-aristo" access="permitAll"/> 
+                <sec:intercept-url pattern="/javax.faces.resource/primefaces.js.chm?ln=primefaces" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/css/biodiversidad.css" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/g_logo.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/bg_tituloCabecera.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/g_sombraCabecera.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/g_tituloCabecera.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/ico_session.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/ico_sessionHover.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/bg_fondo.gif" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/bg_logueo.gif" access="permitAll"/>   
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/ico_usuario.gif" access="permitAll"/>   
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/ico_clave.gif" access="permitAll"/>         
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_logueoIngresar.gif" access="permitAll"/>    
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_logueoLimpiar.gif" access="permitAll"/> 
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/estrategia.png" access="permitAll"/> 
+                
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_ingresar.png" access="permitAll"/>    
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_limpiar.png" access="permitAll"/> 
+                 <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_ingresar2.png" access="permitAll"/>    
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/btn_limpiar2.png" access="permitAll"/> 
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/g_tituloCabecera.png" access="permitAll"/>
+                <sec:intercept-url pattern="/recursos/imagenes/cabecera/logo.png" access="permitAll"/>
+                
+                <sec:intercept-url pattern="/javax.faces.resource/jsf.js.xhtml" access="permitAll"/>
+                <sec:intercept-url pattern="/administrador*" access="isAuthenticated()" />
+                <sec:intercept-url pattern="/paginas*" access="isAuthenticated()" />
+                <sec:intercept-url pattern="/plantillas*" access="isAuthenticated()" />
+                <sec:intercept-url pattern="/recursos*" access="isAuthenticated()" />
+                <sec:intercept-url pattern="/resources*" access="isAuthenticated()" />                
+                 <sec:intercept-url pattern="/registro*" access="permiteAll" />
+                <sec:form-login login-page="/login.xhtml"  login-processing-url="/principal" default-target-url="/principal"/>
+                <sec:logout invalidate-session="true"/>
+        </sec:http>
+
+        <bean id="crowdAuthenticationProvider" class="pe.gob.minam.seguridad.controlador.ProveedorAutentificacion"/>
+
+        <sec:authentication-manager alias="authenticationManager">
+            <sec:authentication-provider ref="crowdAuthenticationProvider"/>
+        </sec:authentication-manager>	
+     
+        <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"  id="passwordEncoder"/>
+
+</beans>

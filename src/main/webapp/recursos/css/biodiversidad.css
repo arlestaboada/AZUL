@@ -1,0 +1,339 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color:#FAFAFA;
+	background-image:url("../imagenes/cabecera/bg_fondo.gif");
+	background-position:top;
+	background-repeat:repeat-x;
+}
+#logueo{
+    	margin: 0px auto 0px auto;
+	border: 0;
+        color: #333;
+        display: block;
+        width: 80%;
+        background-image:url("../imagenes/cabecera/bg_logueo44.gif");
+	background-repeat:no-repeat;
+        font-size: 14px;
+}
+
+
+
+#divPasarela{
+    margin: 0px auto 0px auto;
+	border: 0;
+    color: #333;
+    display: block;
+    width: 40%;
+    padding:15% 15% 15% 15%;
+    font-size: 11px;
+}
+
+#divCapaMadre {
+	display: block;
+	width: 1300px;
+	height: 100%;
+	padding: 0;
+	background: transparent left top repeat-y;
+	margin: 0px auto 3px auto;
+	border: 0;
+	color: #333;
+}
+
+#divPnlContenido{
+	/*height:500px;*/
+        height:auto;
+	position:static;
+	display: block;
+        
+}
+
+.label{
+        font-family:'Arial'; 
+	font-size:8px;
+	text-transform:uppercase;
+}
+
+.value{
+	font-family:'Arial';
+	text-transform:uppercase;
+}
+
+.separacion{
+    margin: 10px;
+}
+
+.ui-panelgrid tr, .ui-panelgrid td {
+    border: none;
+}
+
+.ui-state-default .icon-add-btn{
+	width: 16px;
+	height: 16px;
+	background-image: url(../../recursos/imagenes/icon/add.png)  !important;
+}
+
+.ui-button-primeface{
+	padding: 6px 15px;
+	text-transform:capitalize !important;  
+}
+
+.label_ver_formulario{
+	font-weight: bold;
+}
+
+
+
+/* Empieza la Maquetacion de la Web */
+
+div#contenedor{
+	width: 700px;
+	margin-left:auto;
+	margin-right:auto;	
+}
+
+
+div#cabecera{
+	width: 960px;
+	height: 111px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 7px;
+	clear:both;
+}
+
+div#cab_Contenido{
+	width: 100%;
+	height: 76px;
+	/*background-color:#999999;*/
+	clear:both;
+}
+
+div#cab_Cont_Logo{
+	width: 198px;
+	height: 76px;
+	background:url("../imagenes/cabecera/g_logo.gif");
+	float:left;
+}
+
+div#cab_estrategia{
+	width: 396px;
+	height: 239px;
+	background:url("../imagenes/cabecera/estrategia.png");
+	float: top;
+}
+
+div#cab_Cont_Detalle{
+	width: 100%;
+	height: 76px;
+	float:left;
+}
+
+div#cab_Cont_Det_Informacion{
+	width: 100%;
+	height: 26px;
+	font-family:"Arial", Helvetica, sans-serif;
+	font-size:11px;
+	color:#000000;
+	letter-spacing: 0.2pt;
+	/*background-color:#FFFFFF;*/
+	clear:both;
+}
+
+div#cab_Cont_Det_Inf_AnioLegal{
+	width: 450px;
+	height: 20px;  /* 26px - (padding-top) */
+	margin-left: 10px;
+	padding-top: 6px;
+	float:left;
+	/*background-color:#FFFFFF;*/
+}
+
+* html div#cab_Cont_Det_Inf_AnioLegal {
+	display:inline;
+}
+
+div#cab_Cont_Det_Inf_Saludo{
+	width: 275px;
+	height: 20px;  /* 26px - (padding-top) */
+	margin-left: 10px;
+	padding-top: 6px;
+	float:right;
+	text-align:right;
+	color:#003366;
+	/*background-color:#999999;*/
+}
+
+div#cab_Cont_Det_Inf_Saludo b{
+	color:#8b0000;
+	/*font-weight:bold;*/
+}
+
+div#cab_Cont_Det_Titulo{
+	width: 100%;
+	height: 57px;
+/*	background-image:url("../imagenes/cabecera/g_tituloCabecera.png");*/
+	clear:both;
+        font-family:"Arial", Helvetica, sans-serif;
+        
+}
+
+div#cab_Cont_Det_Tit_Texto{
+	width: 100%;
+	height: 40px; /* 50px - (padding-top) */
+	text-align:center;
+	color:#FFFFFF;
+	font-size:24px;
+	padding-top: 12px;;
+	float:left;
+        font-family:"Arial", Helvetica, sans-serif;
+        font-weight: bold;
+
+}
+
+div#cab_Cont_Det_Tit_Izquierda{
+	width: 85px;
+	height: 51px;
+        text-align:right;
+/*	background-image:url("../imagenes/cabecera/logo.png");*/
+	float:right;
+}
+
+div#cab_Sombra{
+	width: 100%;
+	height: 35px;
+	background-image:url("../imagenes/cabecera/g_sombraCabecera.gif");
+	background-repeat:no-repeat;
+	background-position:top;
+}
+
+
+/* INICIO CSS LOGUEO */
+div#logueo{
+	width:510px;
+	height:300px; /* 301px - padding-top */
+	padding-top:12px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:60px;
+	background-image:url("../recursos/imagenes/cabecera/bg_logueo44.gif");
+	background-repeat:no-repeat;
+	clear:both;
+}
+
+div#log_Titulo{
+	/*width:100%;*/
+	height:25px;  /* 33px - padding-top */
+	padding-top:8px;
+	padding-left:21px;
+	font-family:"Arial", Helvetica, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+	/*background-color:#CCCCCC;*/
+}
+
+div#log_Contenido{
+	width:380px;
+	/*height:256px;*/
+	margin-left:110px;
+	margin-right:auto;
+	margin-top:54px;
+	/*background-color:#999999;*/
+        font-family:"Arial", Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+}
+
+span.icoUsuario {
+width: 14px;
+height: 14px;
+margin: 3px;
+background: url("../imagenes/cabecera/ico_usuario.gif") left no-repeat;
+float: left;
+}
+
+span.icoClave {
+width: 14px;
+height: 14px;
+margin: 3px;
+background: url("../imagenes/cabecera/ico_clave.gif") left no-repeat;
+float: left;
+}
+
+div#log_BotonZona {
+margin-top: 20px;
+margin-left: 65px;
+}
+
+#btnEntrar{
+width: 103px;
+height: 36px;
+padding-top: 0px;
+text-align: center;
+font-size: 12px;
+font-weight: bold;
+color: #FFFFFF;
+background: url("../imagenes/cabecera/btn_ingresar2.png") no-repeat;
+margin-right: 5px;
+float: left;
+border: 0px;
+}
+
+#btnReset{
+width: 103px;
+height: 36px;
+padding-top: 0px;
+text-align: center;
+font-size: 12px;
+font-weight: bold;
+color: #FFFFFF;
+background: url("../imagenes/cabecera/btn_limpiar2.png") no-repeat;
+float: left; 
+border: 0px;
+    
+}
+
+.btn_agregar{
+    height: 27px;
+    width: 27px;
+}
+
+
+
+.movOut{
+    background-color: #e17009 !important;
+    background-image: none !important;
+    color: #fff !important;
+    
+}
+
+.icon-circle-red {
+    background-image: url(../imagenes/circle_red.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center top;
+    display: inline-block;
+}
+
+.icon-circle-yellow {
+    background-image: url(../imagenes/circle_yellow.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: left top;
+    display: inline-block;
+}
+
+.icon-circle-green {
+   
+    height: 16px;
+    width: 16px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: left top;
+    display: inline-block;
+}

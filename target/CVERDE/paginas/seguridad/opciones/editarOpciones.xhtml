@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<f:view>
+			
+        <h:form id="formBusquedaRol">
+                
+
+                <p:panel id="pnlListarRol"
+                        header="Lista de Opciones por Rol" 
+                        style="width: 80%;margin: 10px auto" visible="true"
+                        widgetVar="listaRol">
+                    
+                      <script type="text/javascript">  
+                        function start() {  
+                            PF('statusDialog').show();  
+                        }  
+
+                        function stop() {  
+                            PF('statusDialog').hide();  
+                        }  
+                    </script>  
+                    <p:dialog modal="true" widgetVar="statusDialog" header="Espere..." draggable="false" closable="false" resizable="false">  
+                        <p:graphicImage value="/recursos/imagenes/utilitarios/ajaxloadingbar.gif" />  
+                    </p:dialog> 
+                    
+                        <p:dataTable id="dataTablaRegistros" var="registro"
+                                     value="#{BKMenuRol.listaMenu}" widgetVar="lista"
+                                     emptyMessage="No se encontraron registros"                                   
+                                     rowKey="#{registro.id}" selection="#{BKMenuRol.listaMenuSeleccionados}" 
+                                     paginator="false"   rowSelectMode="multiple"                                  
+                                    >
+
+                            <f:facet name="header">
+                                <div style="text-align: left">
+                                    <p:commandButton process="@this,dataTablaRegistros" action="#{MBOpciones.mostrar}" update=":formBusquedaRol:dataTablaRegistros" icon="ui-icon-arrowthick-1-w" value="Atras"  />
+                                     <p:commandButton process="@this,,dataTablaRegistros" action="#{MBOpciones.guardar}" icon="ui-icon-disk" value="Guardar" onclick="PrimeFaces.monitorDownload(start, stop);" />
+                                </div>                              
+                             </f:facet>
+                            
+                                <p:column selectionMode="multiple" style="width:5%;text-align:center"/>
+                               
+
+                             <p:column  id="idColumnaUsername" style="width: 20%" sortBy="#{registro.nombre}" filterBy="#{registro.nombre}">
+                                     <f:facet name="header">  
+                                        <h:outputText value="Opcion" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{registro.nombre}" style="color: black;font-size: 14px;font-weight: bold" rendered="#{registro.nivel==0}"/>
+                                    <h:outputText value="#{registro.nombre}" style="color: green;font-size: 12px;font-weight: bold" rendered="#{registro.nivel==1}"/>
+                                    <h:outputText value="#{registro.nombre}" style="color: blue;font-size: 12px;font-weight: bold" rendered="#{registro.nivel==2}"/>
+                                    <h:outputText value="#{registro.nombre}" style="color: #01BBEC;font-size: 12px;font-weight: bold" rendered="#{registro.nivel==3}"/>
+                                </p:column>
+
+                                <p:column id="idColumnaNombres" style="width: 65%" >
+                                         <f:facet name="header">  
+                                            <h:outputText value="Descripcion" />  
+                                        </f:facet>
+                                    <h:outputText value="#{registro.descripcion}" />
+                                </p:column>
+
+                               
+                            <p:column id="idColumnaEstado" style="width: 10%" sortBy="#{registro.estadoRegistro}" >
+                                       <f:facet name="header">  
+                                            <h:outputText value="Estado" />  
+                                        </f:facet>
+                                <h:outputText value="#{registro.estadoRegistro}" />
+                                </p:column>
+
+                               
+                           
+
+
+                        </p:dataTable>
+                </p:panel>
+            
+                  
+                   
+        </h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
+</html>

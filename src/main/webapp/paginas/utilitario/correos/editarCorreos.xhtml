@@ -1,0 +1,184 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+    <f:view>
+
+         
+
+<h:form id="formCorreos">
+    
+        <p:growl id="mensajes"/> 
+      
+ 
+  <p:panel id="pnlCorreos" header="Ver Correo"
+                            style="width:100%;margin: 0px auto;">
+       <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton id="btnNuevo" value="Nuevo" icon="ui-icon-document" action="#{MBCorreos.nuevo()}"  ajax="false"  immediate="true" /> 
+
+                        <p:commandButton id="btnGuardar" value="Enviar"  icon="ui-icon-mail-closed" action="#{MBCorreos.guardar()}" process="@this,formCorreos" ajax="false" update=":formCorreos:pnlCorreos"  disabled="true"/>  
+
+                        <p:commandButton id="btnCancelar" value="Cancelar" icon="ui-icon-close" action="#{MBCorreos.mostrar()}" ajax="false" immediate="true"/>  
+                        <p:separator /> 
+                        
+                        
+
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                   
+                <br/>
+              
+                
+                <br/>
+              
+                
+             
+                   <p:panelGrid style="margin:10px auto" >  
+                       
+                   
+                       
+                        <p:row>  
+                            <p:column>
+                                <h:outputLabel id="lblPara" value="Para" />
+                            </p:column>  
+                            <p:column>
+                                <p:inputText id="txtPara" 
+                                             value="#{BKCorreos.correosFormulario.destinatarios}" size="150" required="true" requiredMessage="Para es obligatorio"/>
+                            </p:column>
+                            
+                        </p:row> 
+                        <p:row>  
+                            <p:column>
+                                <h:outputLabel id="lblCopia" value="CC" />
+                            </p:column>  
+                            <p:column>
+                                <p:inputText id="txtCopia"  
+                                             value="#{BKCorreos.correosFormulario.copia}"  size="150"/>
+                            </p:column>
+                            
+                        </p:row> 
+                        <p:row>  
+                            <p:column>
+                                <h:outputLabel id="lblCopiaOculpa" value="CCO" />
+                            </p:column>  
+                            <p:column>
+                                <p:inputText id="txtCopiaOculta"  
+                                             value="#{BKCorreos.correosFormulario.copiaoculta}" size="150"/>
+                            </p:column>
+                            
+                        </p:row> 
+                       
+                        <p:row>  
+                            <p:column>
+                                <h:outputLabel id="lblAsunto" value="Asunto" />
+                            </p:column>  
+                            <p:column>
+                                <p:inputText id="txtAsunto"  onkeyup="cambiarMayuscula(this);"
+                                             value="#{BKCorreos.correosFormulario.asunto}" size="150" required="true" requiredMessage="Asunto es obligatorio"/>
+                            </p:column>
+                            
+                        </p:row> 
+                       
+                         <p:row>  
+                             <p:column colspan="2">
+                                 <pe:ckEditor id="editor" value="#{BKCorreos.correosFormulario.mensaje}" width="100%" height="300px" >  
+                                 
+                                </pe:ckEditor>
+                            </p:column>  
+
+                        </p:row> 
+
+                    </p:panelGrid>  
+                     <p:dataTable id="dataTablaDocumentos" var="documento"
+                                            value="#{BKCorreosDocumentos.listaAdjuntos}" widgetVar="listaDocumentos"
+                                      emptyMessage="No se encontraron documentos" 
+                                      filteredValue="" rowIndexVar="rowIndex" paginator="true" rows="10"
+                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                      rowsPerPageTemplate="5,10,15">
+
+                                     <f:facet name="header">  
+                                       <h:outputText value="Documentos Adjuntos" />  
+                                       <div align="right">
+                                           <p:commandButton id="btnLoadExcel" value="Adjuntar" icon="ui-icon-folder-open" oncomplete="PF('loadCargarArchivos').show()" ajax="true" update=":formCorreos:dlgCargarArchivos" >
+
+                                          </p:commandButton> 
+
+                                      </div>
+                                  </f:facet>  
+
+
+                                      <p:column id="idColumnaNum" style="width: 5%">
+                                          <f:facet name="header">  
+                                              <h:outputText value="Num" />  
+                                          </f:facet>  
+                                              <h:outputText value="#{rowIndex+1}" />
+                                      </p:column>
+
+                                    <p:column id="idColumnaDocumento" style="width: 50%" >
+                                           <f:facet name="header">  
+                                              <h:outputText value="Documento" />  
+                                          </f:facet>  
+                                        <h:outputText value="#{documento.nombre}" />
+                                      </p:column>
+
+                                    <p:column id="idColumnaTipo" style="width: 10%" >
+                                           <f:facet name="header">  
+                                              <h:outputText value="Tipo" />  
+                                          </f:facet>  
+                                        <h:outputText value="#{documento.extension}" />
+                                      </p:column>
+
+
+                                      <p:column id="idColumnaAcciones" style="width: 10%"  headerText="#{message['general.label.tipoAcesso']}" exportable="false" >   
+                                          <p:commandButton id="btnEditar" icon="ui-icon-arrowthick-1-s" title="#{message['general.button.descargar']}" action="#{MBCorreos.descargarArchivos()}"  ajax="false" >
+                                              <f:setPropertyActionListener value="#{documento}" target="#{BKCorreosDocumentos.correoDocumentoSeleccionado}" />  
+                                               <p:fileDownload value="#{BKCorreosDocumentos.reporte}" />  
+                                          </p:commandButton>    
+                                          <p:commandButton id="btnEliminar" icon="ui-icon-trash" title="#{message['general.button.eliminar']}" action="#{MBCorreos.eliminarArchivos()}"  ajax="true" update="dataTablaDocumentos">
+                                               <f:setPropertyActionListener value="#{documento}" target="#{BKCorreosDocumentos.correoDocumentoSeleccionado}" />  
+                                          </p:commandButton>   
+
+                                  </p:column>
+
+
+                                </p:dataTable>   
+            
+                
+                
+            
+                <p:dialog id="dlgCargarArchivos"  header="Cargar Archivos" widgetVar="loadCargarArchivos" modal="true"  height="150" width="600" > 
+                    <h:form id="formCargarArchivos" enctype="multipart/form-data">
+
+                     <h:panelGrid style="width: 100%;margin:0px;border:0px;padding: 0 5px">
+                            <p:fileUpload 
+                                 sizeLimit="1000000"
+                                 fileUploadListener="#{MBCorreos.cargarArchivos}" mode="advanced"
+                                 allowTypes="/(\.|\/)(txt|doc|docx|xls|xlsx|pdf|ppt|pptx|png|jpg|bmp|gif|rar|avi|wma|mp3|mp4)$/" update=":formCorreos:dataTablaDocumentos,:formCorreos:mensajes"
+                                 label="Elegir" uploadLabel="Cargar" cancelLabel="Cancelar"                                
+                                 />
+
+                     </h:panelGrid>
+                   </h:form>
+            </p:dialog>
+      
+      
+       </p:panel>  
+        
+    
+
+            </h:form>
+    </f:view>
+	</ui:define>
+</ui:composition>
+
+
+</html>

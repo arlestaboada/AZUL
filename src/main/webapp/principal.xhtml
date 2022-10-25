@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-xs-12">
+                        <f:view>
+
+                            <center>
+                                <div align="center">	  
+                                    <h:graphicImage class='img-responsive' value="/recursos/imagenes/banner/publicidad.gif" />
+                                </div>
+                            </center> 
+                        </f:view>
+                    </div>
+                </div>
+            </div>
+            <h:form>
+                <p:dataTable emptyMessage="Ministerio del Ambiente   "> 
+                </p:dataTable>    
+            </h:form>
+        
+
+        </ui:define>
+        <ui:define name="footer">
+        
+            
+        </ui:define>
+    </ui:composition>
+</html>

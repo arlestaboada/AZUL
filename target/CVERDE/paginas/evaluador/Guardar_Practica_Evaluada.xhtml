@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+                <h:form id="formBusquedaPracticas">
+                    <h1 style="color: #65F07E ">La prática ha sido evaluada y guardada correctamente.</h1>
+                    <br/> <br/> <br/>
+                    <p:commandButton style=" width:180px; 
+                                     height:40px;" action="#{MBPEvalua.mostrar()}" rendered="#{BKSession.usuario.cargo ne 'Administrador del Sistema'}" value="Ver prácticas ambientales "></p:commandButton>
+                      <p:commandButton style=" width:180px; 
+                                     height:40px;" action="#{MBEvaluar.mostrar()}" rendered="#{BKSession.usuario.cargo eq 'Administrador del Sistema'}" value="Ver prácticas ambientales "></p:commandButton>                
+                </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>

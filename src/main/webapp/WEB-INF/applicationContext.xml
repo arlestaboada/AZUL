@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+ 
+    <context:component-scan base-package="pe.gob.minam" />
+   
+    
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations">
+		<list>
+                    <value> 
+	            	classpath:pe/gob/minam/configuracion/database.properties
+	            </value>
+                    
+                </list>
+	</property>
+    </bean>
+    
+   
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName">
+            <value>${hibernate.connection.driver_class}</value>
+        </property>
+        <property name="url">
+            <value>${hibernate.connection.url}</value>
+        </property>
+        <property name="username">
+            <value>${hibernate.connection.username}</value>
+        </property>
+        <property name="password">
+            <value>${hibernate.connection.password}</value>
+        </property>
+    </bean>
+  
+<!--
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName">
+            <value>oracle.jdbc.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@//192.168.43.81:1521/orcl</value>
+        </property>
+        <property name="username">
+            <value>UDESA</value>
+        </property>
+        <property name="password">
+            <value>desarrollo</value>
+        </property>
+    </bean>
+    
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName">
+            <value>${hibernate.connection.driver_class}</value>
+        </property>
+        <property name="url">
+            <value>${hibernate.connection.url}</value>
+        </property>
+        <property name="username">
+            <value>${hibernate.connection.username}</value>
+        </property>
+        <property name="password">
+            <value>${hibernate.connection.password}</value>
+        </property>
+    </bean>
+  -->
+    
+    
+  
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+        <property name="configLocation">
+            <value>/WEB-INF/cverde.hbm.xml</value>
+        </property>
+        <property name="configurationClass">
+            <value>org.hibernate.cfg.AnnotationConfiguration</value>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.jdbc.batch_size">0</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <tx:annotation-driven />
+    
+   
+
+</beans>

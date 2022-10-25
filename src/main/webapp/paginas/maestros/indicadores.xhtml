@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <style>
+                div.editable {
+
+
+                    padding: 1px;
+                    overflow: auto;
+                }
+            </style>
+            <h:form id="formIndicadores" >
+
+                <p:panel header="Indicadores" >
+
+                    <p:growl id="growl" showDetail="true" severity="info,fatal" />
+
+
+
+                    <div align="right"><p:commandButton value="Agregar" action="#{MBIndicadores.nuevo()}" ajax="true" process="@this"
+                                                      disabled="true"   update=":formIndicadores:mdlIndicadores" oncomplete="PF('dlgIndicador').show();" title="Nuevo Indicador"/></div>
+
+                    <p:dataTable id="tblIndicadores" paginator="true" rows="10"
+                                 paginatorTemplate="#{message['general_paginador_template']}"
+                                 rowIndexVar="rowIndex" 
+                                 paginatorPosition="#{message['general_paginador_posicion']}"
+                                 emptyMessage="#{message['mnt_configuracion_datatable_vacio']}"
+                                 value="#{BKIndicadores.listaIndicadores}"
+                                 var="registro" sortBy="#{registro.numero}" sortOrder="ascending">
+
+                        <p:column id="idColumnaNum" style="width: 5%">
+                            <f:facet name="header">  
+                                <h:outputText value="Num" />  
+                            </f:facet>  
+                            <h:outputText value="#{ recortarIndicador.getNumero(registro.numero)}" />
+                        </p:column>
+
+                        <p:column headerText="Criterio"  width="20%" >
+                            <h:outputText value="#{registro.idcriterio.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Número"  width="10%"  >
+                            <h:outputText value="#{registro.numero}"/>
+                        </p:column>
+                        <p:column headerText="Indicador"  width="60%">
+                            <h:outputText value="#{registro.indicador}"/>                                                    
+                        </p:column>
+
+                        <p:column headerText="Opciones" width="10%">
+                            <p:commandButton icon="ui-icon-pencil" action="#{MBIndicadores.editar()}" process="@this" ajax="true"
+                                             oncomplete="PF('dlgIndicador').show();" update=":formIndicadores:mdlIndicadores" title="Nueva Indicador">
+                                <f:setPropertyActionListener value="#{registro}" target="#{BKIndicadores.indicadoresSeleccionado}" />  
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-trash" title="Eliminar" ajax="true" oncomplete="PF('confirmacionQuitar').show();" 
+                                             update=":formIndicadores:dlgEliminar" >
+                                <f:setPropertyActionListener value="#{registro}" target="#{BKIndicadores.indicadoresSeleccionado}" /> 
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+
+
+                </p:panel>
+
+                <p:dialog id="mdlIndicadores" header="Indicador" widgetVar="dlgIndicador" modal="true"
+                          width="700">
+                    <h:form id="formModal">
+                        <h:panelGrid columns="2" width="600" >
+
+                            <p:outputLabel value="Numero"/>
+                            <p:inputText style="width:50%" value="#{BKIndicadores.indicadoresFormulario.numero}" />
+
+                            <p:outputLabel value="Nombre"/>
+                            <p:inputText style="width:100%" value="#{BKIndicadores.indicadoresFormulario.indicador}" />
+
+
+
+                            <p:outputLabel value="Criterio"/>			      
+                            <p:selectOneMenu id="cbxCriterio"
+                                             value="#{BKIndicadores.idCriterio}" required="true">
+                                <f:selectItem itemLabel="Seleccionar" itemValue="-1" noSelectionOption="true" />
+                                <f:selectItems value="#{BKIndicadores.listaCriterios}"
+                                               var="criterio" itemLabel="#{criterio.nombre}"
+                                               itemValue="#{criterio.idcriterio}" />
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        <br/>
+                        <p:commandButton value="Aceptar" action="#{MBIndicadores.aceptar()}" oncomplete="if (!args.validationFailed){PF('dlgIndicador').hide();} "
+                                         update=":formIndicadores:tblIndicadores" process="@this,formModal" ajax="true"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dlgIndicador').hide();"/>
+                    </h:form>  
+                </p:dialog> 
+
+                <p:confirmDialog id="dlgEliminar" message="Esta seguro de eliminar este registro de la estrategia" 
+                                 header="Eliminar" severity="alert" widgetVar="confirmacionQuitar">
+                    <h:panelGrid style="width: auto;margin:0px auto;border:0px;padding: 0 5px" columns="2">
+                        <p:commandButton id="btnAceptarEliminar" value="Si"  oncomplete="PF('confirmacionQuitar').hide()"  
+                                         actionListener="#{MBIndicadores.eliminarRegistro()}"  ajax="true" update=":formIndicadores:tblIndicadores"/>  
+                        <p:commandButton id="btnCancelarEliminar" value="No" onclick="PF('confirmacionQuitar').hide();" type="button" />
+                    </h:panelGrid>
+                </p:confirmDialog>
+            </h:form>	
+        </ui:define>
+    </ui:composition>
+</html>

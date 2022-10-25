@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+
+
+                <h:form id="formInstituciones">
+
+
+                    <p:panel header="Instituciones" >
+
+
+
+                        <p:growl id="growl" showDetail="true" severity="info,fatal" />
+
+
+                        <div align="right"><p:commandButton value="Agregar" action="#{MBInstituciones.nuevo()}" ajax="true" process="@this"
+                                                            update=":formInstituciones:mdlInstituciones" oncomplete="PF('dlgInstituciones').show();" title="Nuevas Instituciones"/></div>
+
+
+                        <p:dataTable id="tblIntituciones" 
+                                     paginator="true" 
+                                     rows="10" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     emptyMessage="No se encontraron registros"                                   
+                                     rowIndexVar="rowIndex" 
+                                     value="#{BKInstituciones.listaInstituciones}" widgetVar="lista"
+                                     var="registro"                      
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <p:column id="idColumnaNum" style="width: 8%">
+                                <f:facet name="header">  
+                                    <h:outputText value="Num" />  
+                                </f:facet>  
+                                <h:outputText value="#{rowIndex+1}" />
+                            </p:column>
+                            <p:column id="siglaReg" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Sigla" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.sigla}" />
+                            </p:column>
+                            <p:column id="nombrereg" style="width: 20%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Nombre" />  
+                                </f:facet>  
+                                <h:outputText value="#{ registro.nombre}" />
+                            </p:column>  
+                            <p:column id="nomDescripcion" style="width: 60%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Descripción" />  
+                                </f:facet>  
+                                <h:outputText value="#{ registro.descripcion}" />
+                            </p:column> 
+
+
+                        </p:dataTable>
+                    </p:panel>
+                    <p:dialog id="mdlInstituciones" header="Instituciones" widgetVar="dlgInstituciones" modal="true"
+                              width="700">
+
+                        <h:form id="formModal">
+                            <h:panelGrid columns="2" width="600" >
+
+                                 <p:outputLabel value="ID"/>
+                                 <p:inputText style="width:50%" value="#{BKInstituciones.institucionesFormulario.id}" />
+
+                                <p:outputLabel value="Sigla"/>
+                                <p:inputText style="width:50%" value="#{BKInstituciones.institucionesFormulario.sigla}" />
+
+                                <p:outputLabel value="Nombre"/>
+                                <p:inputText style="width:100%" value="#{BKInstituciones.institucionesFormulario.nombre}" />
+
+                                <p:outputLabel value="Descripción"/>
+                                <p:inputText style="width:100%" value="#{BKInstituciones.institucionesFormulario.descripcion}" />
+                                <p:outputLabel value="Estado de Registro"/>
+                                <p:inputText style="width:100%" value="#{BKInstituciones.institucionesFormulario.estadoRegistro}" />
+
+                            </h:panelGrid>
+                            <p:commandButton value="Aceptar" action="#{MBInstituciones.aceptar()}" oncomplete="PF('dlgInstituciones').hide();" 
+                                          update=":formInstituciones:tblIntituciones"     process="@this,formModal" ajax="true"/>
+                            <p:commandButton value="Cancelar" onclick="PF('dlgInstituciones').hide();"/>
+                        </h:form>  
+
+                    </p:dialog> 
+
+
+                </h:form>
+
+
+            </f:view>
+        </ui:define>
+    </ui:composition>
+
+</html>

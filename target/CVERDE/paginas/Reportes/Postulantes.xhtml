@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+                <h:form id="formBusquedaPracticas">
+
+                    <h:outputText value="Formulario de Inscripción" />
+                    <p:panel id="pnlListarPracticas"
+                             header="Prácticas ambientales registradas" 
+                             style="width: 200%;margin: 10px auto" visible="true"
+                             widgetVar="listaPracticas">
+
+                        <p:dataTable id="tbl" 
+                                     paginator="true" 
+                                     rows="10" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     emptyMessage="No se encontraron registros"                                   
+                                     rowIndexVar="rowIndex" 
+                                     value="#{BKPostulante.listaPostulantes}" widgetVar="lista"
+                                     var="registro"                      
+                                     rowsPerPageTemplate="5,10,15">
+                            <p:column id="idColumnaNum" style="width: 8%">
+                                <f:facet name="header">  
+                                    <h:outputText value="Num" />  
+                                </f:facet>  
+                                <h:outputText value="#{rowIndex+1}" />
+                            </p:column>
+                            <p:column id="departamento" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Departmento" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.departamento}" />
+                            </p:column>
+                            <p:column id="provincia" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Provincia" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.provincia}" />
+                            </p:column>
+                            <p:column id="distrito" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Distrito" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.distrito}" />
+                            </p:column>
+                            <p:column id="dni" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="DNI" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.distrito}" />
+                            </p:column>
+                            <p:column id="nombress" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Nombres" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.nombres}" />
+                            </p:column>
+                            <p:column id="apellidoss" style="width: 12%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Apellidos" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.apellidos}" />
+                            </p:column>
+                            <p:column id="edad" style="width: 5%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Edad" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.edad}" />
+                            </p:column>
+                            <p:column id="Genero" style="width: 5%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Genero" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.sgenero}" />
+                            </p:column>
+                            <p:column id="telefono" style="width: 7%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Télefonos" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.telefonos}" />
+                            </p:column>
+                            <p:column id="email" style="width: 15%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Email" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.email}" />
+                            </p:column>
+                            <p:column id="institucion" style="width: 17%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Institución Educativa" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.instEducativa}" />
+                            </p:column>
+                            <p:column id="categorias" style="width: 5%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Categoría" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.categoria}" />
+                            </p:column>
+                            <p:column id="buenaspRACTICAS" style="width: 5%" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Buenas Prácticas" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.buenasPractica}" />
+                            </p:column>
+
+
+
+                        </p:dataTable>
+
+                    </p:panel>
+                    <h3>Exportar tu data:</h3>
+                    <h:commandLink>
+                        <p:commandButton value="EXCEL" />
+                        <p:dataExporter type="xls" target="tbl" fileName="POSTULANTES" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:commandButton value="PDF" />
+                        <p:dataExporter type="pdf" target="tbl" fileName="POSTULANTES" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:commandButton value="CSV" />
+                        <p:dataExporter type="csv" target="tbl" fileName="POSTULANTES" pageOnly="true"/>
+                    </h:commandLink>
+                     <h:commandLink>
+                        <p:commandButton value="XML" />
+                        <p:dataExporter type="xml" target="tbl" fileName="POSTULANTES" pageOnly="true"/>
+                    </h:commandLink>
+                </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>

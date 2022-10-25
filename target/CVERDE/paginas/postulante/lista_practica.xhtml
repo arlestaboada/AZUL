@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+
+                <h:form id="formBusquedaPracticas">
+
+
+                    <p:panel id="pnlListarPracticas"
+                             header="Mis buenas prácticas ambientales" 
+                             style="width: 100%;margin: 10px auto" visible="true"
+                             widgetVar="listaPracticas">
+
+                        <div align="right">       
+
+                            <p:commandButton id="btnNuevoPracticas"
+                                             action="#{MBPracticas.nuevo()}" value="Nueva Practica" ajax="false" >
+                                <f:setPropertyActionListener value="#{BKPracticas.nuevoOperacion}" target="#{BKPracticas.operacion}" />    
+                            </p:commandButton>
+                        </div>
+
+                        <p:dataTable id="dataTablaRegistros" var="registro"
+                                     value="#{BKPracticas.listaPracticas}" widgetVar="lista"
+                                     emptyMessage="No se encontraron registros"                                   
+                                     rowIndexVar="rowIndex" 
+                                     paginator="true" 
+                                     rows="10"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <p:column id="idColumnaNum" style="width: 5%">
+                                <f:facet name="header">  
+                                    <h:outputText value="Num" />  
+                                </f:facet>  
+                                <h:outputText value="#{rowIndex+1}" />
+                            </p:column>
+
+                            <p:column id="idColumnaTitulo" style="width: 77.5%" sortBy="#{registro.titulo}" filterBy="#{registro.titulo}">
+                                <f:facet name="header">  
+                                    <h:outputText value="Título Práctica" />  
+                                </f:facet>  
+                                <h:outputText value="#{registro.titulo}" />
+                            </p:column>
+
+                            <p:column id="idColumnaEstado" style="width: 10%" sortBy="#{registro.estadoReg}" >
+                                <f:facet name="header">  
+                                    <h:outputText value="Estado" />  
+                                </f:facet>  
+                                <h:outputText value="REGISTRADO"  rendered="#{registro.estadoReg==1}"/>
+                                <h:outputText value="ENVIADO"  rendered="#{registro.estadoReg==2}"/>
+                                <h:outputText value="NO LOGRO RECONOCIMIENTO"  rendered="#{registro.estadoReg==3}"/>
+                                <h:outputText value="LOGRO RECONOCIMIENTO"  rendered="#{registro.estadoReg==4}"/>
+                            </p:column>
+
+
+                            <p:column id="idColumnaOpciones" style="width: 7.5%"  headerText="Opciones" exportable="false">                              
+                                <p:commandButton id="btnEditar" icon="ui-icon-pencil" title="#{message['general.button.editar']}" action="#{MBPracticas.editar()}" immediate="true" ajax="false">
+                                    <f:setPropertyActionListener value="#{registro}" target="#{BKPracticas.practicas}" />                                            
+                                </p:commandButton>  
+                                <p:commandButton id="btnEliminar" icon="ui-icon-trash" title="#{message['general.button.eliminar']}" action="#{MBPracticas.ver()}" immediate="true" ajax="false" disabled="#{registro.estadoReg==BKPracticas.estadoEnviado}">
+                                    <f:setPropertyActionListener value="#{registro}" target="#{BKPracticas.practicas}" />                                          
+                                </p:commandButton>   
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </p:panel>
+
+
+
+                </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+
+</html>

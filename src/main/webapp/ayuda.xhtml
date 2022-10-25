@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+        <ui:define name="contenido">
+            <f:view>
+
+
+
+                <h:form id="formAyuda">
+
+                    <p:growl id="mensajes"/> 
+
+
+                    <p:panel id="pnlAyuda" header="Ayuda"
+                             style="width:100%;margin: 0px auto;">
+
+
+
+                        <p:panelGrid style="margin:10px auto" >  
+
+                            <p:row>  
+                                <p:column>
+                                    <h:outputLabel id="lblManual" value="Manual de Usuario" />
+                                </p:column>  
+                                <p:column>
+                                    <h:form>
+                                        <p:commandButton value="Descargar" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                            <p:fileDownload value="#{fileDownloadView.file}" />
+                                        </p:commandButton>
+                                    </h:form>
+                                </p:column>
+
+                            </p:row> 
+
+
+
+                        </p:panelGrid> 
+                        <br/>
+
+
+
+
+
+
+
+                    </p:panel>  
+
+
+
+                </h:form>
+               
+            </f:view>
+        </ui:define>
+    </ui:composition>
+
+
+</html>

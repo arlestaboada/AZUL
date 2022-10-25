@@ -1,0 +1,65 @@
+/*watermark*/
+::-webkit-input-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important; 
+	text-align: center;
+	font-size:10pt;
+}
+
+<!-- styles for firefox -->
+:-moz-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important;
+	text-align: center;
+	font-size: 10pt;
+}
+
+ <!-- styles for internet explorer -->
+.ui-watermark {
+	color: #808080 !important;
+	font-weight: normal !important;
+	text-align: center;
+	font-size: 10pt;
+}
+
+.ui-panel .ui-panel-title {
+	margin: 0.1em 16px 0.2em 0;
+	/*background-color: #68A918;
+	color: white;*/
+	font-size: 12pt;
+}
+
+.fileupload-buttonbar .ui-button input {
+	font-size: 8pt;
+}
+
+.ui-panel-titlebar {
+	/*background-color: #68A918 !important;*/
+}
+
+.ui.panel{
+	/*background-color: #68A918 !important;*/
+}
+
+#growl_container > *:nth-child(n){
+	display: none !important;
+	font-size: 12pt;
+	margin-top: 90px !important;
+}
+
+#growl_container > *:nth-child(1){
+	display: block !important;
+	font-size: 12pt;
+	margin-top: 90px !important;
+}
+
+#growlLogin_container > *:nth-child(n){
+	display: none !important;
+	font-size: 12pt;
+}
+
+#growlLogin_container > *:nth-child(1){
+	display: block !important;
+	font-size: 12pt;
+}
+

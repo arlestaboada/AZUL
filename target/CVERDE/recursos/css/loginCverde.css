@@ -1,0 +1,77 @@
+img{
+    max-width: 100%; 
+    /*realtar imagen*/
+    border: 5px solid #ccc;
+    float: left;
+    margin: 15px;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -ms-transition: margin 0.5s ease-out;
+    transition: margin 0.5s ease-out;
+}
+.volar img:hover {
+    margin-top: 2px;
+    border: 1px solid #76B82A;
+}
+
+#main-header{
+
+    top: 0;
+
+    background-color: #76B82A;
+    z-index:99;
+    width: 100%;
+    -moz-box-shadow:0 1px 5px #999;
+    -webkit-box-shadow: 0 1px 5px #999;
+    box-shadow: 0 1px 5px #999;
+    padding-top:10px;
+
+
+}
+
+.negrita {
+    font-weight:bold;
+}
+footer{
+
+    padding: 30px 0;
+    background-color: #333;
+
+}
+footer h3{
+    margin-top: 30px;
+    color:#fff;
+    font-size: 16px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+footer p{
+    color:#ddd;
+    font-weight: 200;
+}
+#Cverde-Home{
+    margin-top:30px;
+
+}
+#navegacion{
+    margin-top:30px;
+    width: 100%;
+
+}
+#modal-centado{
+    margin: auto;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+    width: 50%; 
+    height: 50%;
+    min-width: 200px;
+    max-width: 400px;
+    padding: 40px;
+  
+}
+
+.modal::-webkit-scrollbar{
+    /* solo oculta su visualizacion */
+    display: none;
+}

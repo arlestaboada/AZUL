@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        </f:facet>
+
+        <f:loadBundle basename="pe.gob.minam.configuracion.Mensajes" var="message" />
+
+        <title><h:outputText value="CVERDE"/></title>   
+
+
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/default.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/biodiversidad.css" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+
+        <script type="text/javascript">
+            window.history.forward();
+            function noBack() {
+                window.history.forward();
+            }
+        </script>
+
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/FixedColumns.js" />
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/FixedColumns.min.js" />
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/script.js" />
+
+
+
+        <style>
+            .tablaSinBorde tr, .tablaSinBorde td {
+                border-style: hidden !important;
+            }
+            .ui-message-error{
+                display: inline !important;
+            }
+            ui-panelgrid,.ui-panelgrid-cell {
+                border-width: 0px !important;
+                border-style: solid;
+                border-color: inherit;
+                padding: 4px 10px;
+            }
+
+            #headerLogin {
+                clear: both;
+                display: inline-block;
+
+                position : absolute;
+                top :0;
+                height : 15%;
+                margin-top : auto;
+                background-color:#76B82A;
+                background-size: 60% 100%;
+                background-repeat: repeat;
+                padding: 0px;
+                margin: 0px;  
+                top: 0;
+                background-color: #76B82A;
+                z-index:99;
+                width: 100%;
+                -moz-box-shadow:0 1px 5px #999;
+                -webkit-box-shadow: 0 1px 5px #999;
+                box-shadow: 0 1px 5px #999;
+                padding-top:10px;
+                padding-bottom:10px;
+
+            }
+
+            #headerBanner1 {
+                clear: both;
+                display: inline-block;
+                position : absolute;
+                top :0px;
+                left: 0px;
+
+                margin-top : auto;
+                padding: 0px;
+                margin: 0px;             
+            }
+
+            #headerBanner2 {
+                clear: both;
+                display: inline-block;
+
+                position : absolute;
+                top :0px;
+                right: 0px;
+
+                margin-top : auto;
+                padding: 0px;
+                margin: 0px;             
+            }
+
+
+            #cien{
+                width: 100%;
+            }
+
+        </style>
+
+
+    </h:head>
+    <h:body onload="noBack();"  class="home blog" style="background-image: url(/CVERDE/recursos/imagenes/login/1.png);">   
+
+        <f:view>
+            <p:growl id="growl" showDetail="true" life="5000"/>
+            <h:form id="frmGral" prependId="false">
+
+                <div id="headerLogin">
+                    <div class="container" style="background-color:#76B82A ">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div id="headerBanner1"  align="right">  
+                                    <h:graphicImage class="img-responsive" value="../public/img/Logo-MINAM.png"  />
+                                </div>
+                            </div>
+                            <div class="col-xs-9">
+                                <div id="headerBanner2" align="center">        
+                                    <h:graphicImage id="cien" class="img-responsive" value="/recursos/imagenes/nuevoLogin/cabecera-sin-fondo.png"  width="800px" height="120px"/>
+                                </div>
+                            </div>  
+                        </div>  
+                    </div>
+                    <div id="blanco">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="headerLogin2">
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+
+
+                <div id="divCapaMadre">
+
+                    
+                    <div id="divPnlContenido"  style="position: absolute; top: 180px">
+                        <h:panelGrid id="pnlContenido"  columns="1" width="1300px" border="0">   
+                            <p:messages id="msgs" showDetail="false"  autoUpdate="true" closable="true" globalOnly="true"/>
+
+
+
+                            <p:panelGrid id="gridBasicData" columns="2" columnClasses="columnPhoto, column80" styleClass="tableTotal">	
+
+                                <f:facet name="header">
+                                    <h:outputText value="Formulario de Inscripción" />
+                                </f:facet>
+
+
+                                <p:panel id="pnlInfoBasic" widgetVar="_pnlInfoBasic">
+                                    <p:panelGrid columns="1"  styleClass="tableTotal"
+                                                 style="text-align: center;">
+
+                                        <h:outputText id="htmlStuff" value="#{message['cverde.login.registro']}" escape="false"/>
+
+                                        <p:separator style="height:2px;" />
+
+                                        <p:panel>
+
+                                            <p:commandButton value="Volver a inicio" icon="ui-icon-home" action="#{MBPostulantes.cancelar}" 
+                                                             process="@this" />
+
+                                        </p:panel>
+
+                                    </p:panelGrid>
+                                </p:panel>		
+                            </p:panelGrid>
+
+
+
+
+
+                        </h:panelGrid>
+                    </div> 
+
+
+                </div>
+
+            </h:form>
+
+
+
+        </f:view>
+    </h:body>
+
+</html>    

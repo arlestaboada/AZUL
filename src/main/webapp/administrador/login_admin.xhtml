@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+         <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        </f:facet>
+
+        <f:loadBundle basename="pe.gob.minam.configuracion.Mensajes" var="message" />
+
+        <title><h:outputText value="#{message['general.cabecera.titulo.aplicacion']}"/></title>   
+
+        
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/default.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/biodiversidad.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/primefaces.css" />
+        
+        
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/FixedColumns.js" />
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/FixedColumns.min.js" />
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/script.js" />
+        <script type="text/javascript" src="#{request.contextPath}/recursos/js/primefaces.js" />
+
+        <style>
+            .tablaSinBorde tr, .tablaSinBorde td {
+                border-style: hidden !important;
+            }
+            .ui-message-error{
+                display: inline !important;
+            }
+        </style>
+        
+    </h:head>
+    <h:body>
+        <div id="contenedor" align="center">
+            
+        
+             
+        
+          
+          
+            <div id="log_Contenido" align="center">
+                   
+            <h:form id="formLogin" prependId="false">
+                <center>
+                    <div align="center">	  
+                        <h:graphicImage value="/recursos/imagenes/cabecera/estrategia.png" />
+                    </div>
+                </center> 
+                <center>
+                    <div align="center" style="width:417px;height:301px;background-image: url(/SISENDB/recursos/imagenes/cabecera/bg_logueo.gif)">
+                    
+                        <p:panelGrid  rendered="true" >
+                        <p:row>
+                            <p:column colspan="3" style="height: 60px">
+                                <h:outputText  value=" Acceso al Sistema" style="color: white; font-size: 14px"  />
+                            </p:column>    
+                        </p:row>      
+                        <p:row>
+                            <p:column colspan="3" style="border-width:0px !important">
+                                <p><p:message  for="formLogin" /></p>
+                            </p:column>    
+                        </p:row>    
+                        <p:row>
+                            <p:column style="border-width:0px !important">
+                                <h:outputText id="lblLogueoUsuario" value="Usuario"  />
+                                
+                            </p:column>
+                            <p:column style="border-width:0px !important">
+                                <span class="icoUsuario"></span>
+                                <h:inputText  id="j_username" label="usuario"  required="true" value="#{BKSession.user}" requiredMessage="(*) requerido"/>                               
+                            </p:column>
+                            <p:column style="border-width:0px !important">
+                                <p:message for="j_username"  style="color: red !important;" />
+                            </p:column>     
+                        </p:row>
+                       
+                        <p:row> 
+                            <p:column style="border-width:0px !important">
+                                <h:outputText id="lblLogueoContrancen" value="Contraseña"  />
+                            </p:column>
+                            <p:column style="border-width:0px !important">
+                                <span class="icoClave"></span>
+                                <h:inputSecret id="j_password" label="password"  required="true" value="#{BKSession.pass}" requiredMessage="(*) requerido"/>                               
+                            </p:column>
+                            <p:column style="border-width:0px !important">
+                                <p:message for="j_password"  style="color: red !important;"/>
+                            </p:column>     
+                        </p:row>    
+                        <p:row >
+                            <p:column colspan="3" style="border-width:0px !important">
+                                <div id="log_BotonZona">
+                              
+                                    <p:commandButton id="btnEntrar" value="Ingresar" type="submit"  action="#{MBAcceso.validarAcceso}" />
+                                    <p:commandButton id="btnReset" value="Cancelar" type="reset" />
+                                   
+                                </div>
+                            </p:column>    
+                        </p:row>    
+                    </p:panelGrid>
+                        
+                  </div>
+                        
+                </center>
+            </h:form>
+                </div>
+        
+        </div>
+             
+    </h:body>
+
+</html>    

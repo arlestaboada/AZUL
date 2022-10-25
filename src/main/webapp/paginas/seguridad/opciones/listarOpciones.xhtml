@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<f:view>
+			
+        <h:form id="formBusquedaRol">
+                
+           
+                <p:panel id="pnlListarRol"
+                        header="Lista de  Opciones por rol" 
+                        style="width: 80%;margin: 10px auto" visible="true"
+                        widgetVar="listaRol">
+                    
+                
+                    
+                        <p:dataTable id="dataTablaRegistros" var="registro"
+                                     value="#{BKRol.listaRoles}" widgetVar="lista"
+                                     emptyMessage="No se encontraron registros"                                   
+                                     rowIndexVar="rowIndex" 
+                                     paginator="true" 
+                                     rows="10"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+                               
+                             
+                            
+                                <p:column id="idColumnaNum" style="width: 10%">
+                                    <f:facet name="header">  
+                                        <h:outputText value="Num" />  
+                                    </f:facet>  
+                                        <h:outputText value="#{rowIndex+1}" />
+                                </p:column>
+
+                             <p:column id="idColumnaUsername" style="width: 20%" sortBy="#{registro.nombre}" filterBy="#{registro.nombre}">
+                                     <f:facet name="header">  
+                                        <h:outputText value="Username" />  
+                                    </f:facet>  
+                                 <h:outputText value="#{registro.nombre}" />
+                                </p:column>
+
+                                <p:column id="idColumnaNombres" style="width: 50%" >
+                                         <f:facet name="header">  
+                                            <h:outputText value="Nombres" />  
+                                        </f:facet>
+                                    <h:outputText value="#{registro.descripcion}" />
+                                </p:column>
+
+                               
+                            <p:column id="idColumnaEstado" style="width: 10%" sortBy="#{registro.estadoRegistro}" >
+                                       <f:facet name="header">  
+                                            <h:outputText value="Estado" />  
+                                        </f:facet>
+                                <h:outputText value="#{registro.estadoRegistro}" />
+                                </p:column>
+
+                               
+                             <p:column id="idColumnaAcciones" style="width: 10%"  headerText="Permisos" exportable="false">                              
+                                 <p:commandButton id="btnEditar" icon="ui-icon-bookmark" title="Permisos" action="#{MBOpciones.editar()}" immediate="true" ajax="false">
+                                     <f:setPropertyActionListener value="#{registro}" target="#{BKRol.rolSeleccionado}" />  
+                                </p:commandButton>                                                  
+                            </p:column>
+
+
+                        </p:dataTable>
+                </p:panel>
+            
+                  
+                   
+        </h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="pe.minam.gob_SISENDB_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>pe.gob.minam.sistema.entidades.EdbEndb</class>
+    <class>pe.gob.minam.sistema.entidades.EdbSubmeta</class>
+    <class>pe.gob.minam.sistema.entidades.EdbIndicadores</class>
+    <class>pe.gob.minam.sistema.entidades.EdbAcciones</class>
+    <class>pe.gob.minam.sistema.entidades.EdbLineaBase</class>
+    <class>pe.gob.minam.sistema.entidades.EdbObjetivoEstrategico</class>
+    <class>pe.gob.minam.sistema.entidades.EdbMeta</class>
+    <class>pe.gob.minam.sistema.entidades.PostulanteDocumentos</class>
+    <class>pe.gob.minam.sistema.entidades.PostulanteDocumentosFiles</class>
+    <class>pe.gob.minam.sistema.entidades.Postulante</class>
+    <class>pe.gob.minam.sistema.entidades.Practicas</class>
+    <class>pe.gob.minam.sistema.entidades.PostulanteUsuario</class>
+    <class>pe.gob.minam.sistema.entidades.Correos</class>
+    <class>pe.gob.minam.sistema.entidades.CorreosDocumentos</class>
+    <class>pe.gob.minam.sistema.entidades.Usuario</class>
+    <class>pe.gob.minam.sistema.entidades.Rol</class>
+    <class>pe.gob.minam.sistema.entidades.Instituciones</class>
+    <class>pe.gob.minam.sistema.entidades.Menu</class>
+    <class>pe.gob.minam.sistema.entidades.MenuRol</class>
+    <class>pe.gob.minam.sistema.entidades.UsuarioDocumentos</class>
+    <class>pe.gob.minam.sistema.entidades.UsuarioFiles</class>
+    <class>pe.gob.minam.sistema.entidades.PracticasDocumentos</class>
+    <class>pe.gob.minam.sistema.entidades.PracticasDocumentosFiles</class>
+    <class>pe.gob.minam.sistema.entidades.Criterios</class>
+    <class>pe.gob.minam.sistema.entidades.Indicadores</class>
+    <class>pe.gob.minam.sistema.entidades.Evaluar</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@osiris:1521:XE"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.user" value="BD_CHM_ENDB"/>
+    </properties>
+  </persistence-unit>
+</persistence>

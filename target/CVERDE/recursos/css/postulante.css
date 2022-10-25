@@ -1,0 +1,70 @@
+
+.tablaSinBorde tr, .tablaSinBorde td {
+    border-style: hidden !important;
+}
+.ui-message-error{
+    display: inline !important;
+}
+ui-panelgrid,.ui-panelgrid-cell {
+    border-width: 0px !important;
+    border-style: solid;
+    border-color: inherit;
+    padding: 4px 10px;
+}
+
+#headerLogin {
+    clear: both;
+    display: inline-block;
+    width: 100%;
+    position : absolute;
+    top :0;
+    height : 15%;
+    margin-top : auto;
+    background-color:#76B82A;
+    background-size: 60% 100%;
+    background-repeat: repeat;
+    padding: 0px;
+    margin: 0px;             
+}
+
+#headerBanner1 {
+    clear: both;
+    display: inline-block;
+    width:15%;
+    position : absolute;
+    top :0px;
+    left: 0px;
+    height : 100%;
+    margin-top : auto;
+    padding: 0px;
+    margin: 0px;             
+}
+
+#headerBanner2 {
+    clear: both;
+    display: inline-block;
+    width: 90%;
+    position : absolute;
+    top :0px;
+    right: 0px;
+    height : 100%;
+    margin-top : auto;
+    padding: 0px;
+    margin: 0px;             
+}
+
+#headerLogin2 {
+    clear: both;
+    display: inline-block;
+    width: 100%;
+    position : absolute;
+    top :100px;
+    height : 45px;
+    margin-top : auto;
+    background-image: url(/CVERDE/recursos/imagenes/nuevoLogin/web4.png);
+    background-size: 100% 100%;
+    background-repeat: repeat;
+    padding: 0px;
+    margin: 0px;             
+}
+

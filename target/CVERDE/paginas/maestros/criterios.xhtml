@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+            <h:form id="formCriterios">
+                <p:panel header="Criterios de Evaluación" >
+
+                        <p:growl id="growl" showDetail="true" severity="info,fatal" />
+									
+				
+				
+                        <div align="right"><p:commandButton value="Agregar" action="#{MBCriterios.nuevo()}" ajax="true" process="@this"
+                                                            disabled="true" update=":formCriterios:mdlCriterios" oncomplete="PF('dlgCriterios').show();" title="Nuevo Criterios"/></div>
+
+                        <p:dataTable id="tblCriterios" paginator="true" rows="10"
+                                    paginatorTemplate="#{message['general_paginador_template']}"
+                                    paginatorPosition="#{message['general_paginador_posicion']}"
+                                    emptyMessage="#{message['mnt_configuracion_datatable_vacio']}"
+                                    value="#{BKCriterios.listaCriterios}"
+                                    var="registro">
+                                    <p:column headerText="Numero"  width="10%">
+                                        <h:outputText value="#{registro.numero}"/>
+                                    </p:column>
+                                    <p:column headerText="Nombre"  width="30%">
+                                        <h:outputText value="#{registro.nombre}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Acciones" width="10%">
+                                        <p:commandButton icon="ui-icon-pencil" title="Editar" action="#{MBCriterios.editar()}" process="@this" ajax="true"
+                                                             oncomplete="PF('dlgCriterios').show();" update=":formCriterios:mdlCriterios" >
+                                            <f:setPropertyActionListener value="#{registro}" target="#{BKCriterios.criteriosSeleccionado}" />  
+                                        </p:commandButton>
+                                        <p:commandButton icon="ui-icon-trash" title="Eliminar" ajax="true" oncomplete="PF('confirmacionQuitar').show();" 
+                                                         update=":formCriterios:dlgEliminar" >
+                                            <f:setPropertyActionListener value="#{registro}" target="#{BKCriterios.criteriosSeleccionado}" />  
+                                        </p:commandButton>
+                                    </p:column>						
+                    </p:dataTable>
+				
+			
+		</p:panel>
+		
+                <p:dialog id="mdlCriterios" header="Criterios Estratégico" widgetVar="dlgCriterios" modal="true"
+			width="700">
+                    <h:form id="formModal">
+		  	<h:panelGrid columns="2" width="600" >
+
+					<p:outputLabel value="Numero"/>
+                                        <p:inputText style="width:100%" value="#{BKCriterios.criteriosFormulario.numero}"/>
+					
+					<p:outputLabel value="Nombre"/>
+                                        <p:inputText style="width:100%" value="#{BKCriterios.criteriosFormulario.nombre}" />
+				
+				</h:panelGrid>
+                    <p:commandButton value="Aceptar" action="#{MBCriterios.aceptar()}" oncomplete="PF('dlgCriterios').hide();" 
+                                     update=":formCriterios:tblCriterios" process="@this,formModal" ajax="true"/>
+			<p:commandButton value="Cancelar" onclick="PF('dlgCriterios').hide();"/>
+                        
+                   </h:form>     
+		</p:dialog> 
+                
+                  <p:confirmDialog id="dlgEliminar" message="Esta seguro de eliminar este registro de la estrategia" 
+                             header="Eliminar" severity="alert" widgetVar="confirmacionQuitar">
+                    <h:panelGrid style="width: auto;margin:0px auto;border:0px;padding: 0 5px" columns="2">
+                        <p:commandButton id="btnAceptarEliminar" value="Si"  oncomplete="PF('confirmacionQuitar').hide()"  
+                                         actionListener="#{MBCriterios.eliminarRegistro()}"  ajax="true" update=":formCriterios:tblCriterios"/>  
+                        <p:commandButton id="btnCancelarEliminar" value="No" onclick="PF('confirmacionQuitar').hide();" type="button" />
+                    </h:panelGrid>
+                </p:confirmDialog>
+                
+	</h:form>	
+	</ui:define>
+</ui:composition>
+</html>

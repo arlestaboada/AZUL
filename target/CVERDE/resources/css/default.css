@@ -1,0 +1,163 @@
+/* Section Text */
+.textLabel18{
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.textLabel16{
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.textLabel14{
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.textLabel12{
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.textLabel12Negro{
+	font-size: 12pt;
+	font-weight: bold;
+        color: black;
+}
+
+.textLabel10{
+	font-size: 10pt;
+	font-weight: bold;	
+}
+
+.textLabel9{
+	font-size: 9pt;
+	font-weight: bold;	
+}
+
+.textLabel8{
+	font-size: 8pt;
+	font-weight: bold;	
+}
+
+/* Section Table */
+.tableTitle td {
+    text-align: center;
+    width: 100%; 
+}
+
+.tableFoto {
+    width: 100%;
+    text-align: center;
+    border-style: none !important;
+}
+
+.tableTotal{
+    width: 100%;
+    text-align: center;
+    border-style: none !important;
+    vertical-align: top !important;
+}
+
+.tablePopup{
+    width: 100%;
+    text-align: left;
+    border-style: none !important;
+}
+
+.tableTotal .ui-panelgrid td, .ui-panelgrid tr{
+    border-style: none !important;
+    font-size: 10pt;
+}
+
+.tableMediumTotal{
+    width: 100%;
+    text-align: left;
+    border-style: none !important;
+}
+
+
+.tableLogin{
+    width: 50%;
+    border-style: none !important;
+    margin: 0 auto;
+}
+
+.tableWithoutBorder{	
+	border-style: none !important;
+}
+
+.tableWithoutBorder tr, .tableWithoutBorder td {
+    border: none;
+}
+
+.pnlLogin{
+	height:95% !important;	
+}
+
+.column5{
+	width: 5%;
+	height:auto;
+	text-align: center;
+}
+
+.column10{
+	width: 10%;
+	height:auto;
+	text-align: center;
+}
+
+.column15{
+	width: 15%;
+	height:auto;
+	text-align: center;
+}
+
+.column20{
+	width: 20%;
+	height:auto;
+	text-align: center;
+}
+
+.column30{
+	width: 30%;
+	height:auto;
+	text-align: center;
+}
+
+.column40{
+	width: 40%;
+	height:auto
+}
+
+.column50{
+	width: 50%;
+	height:auto
+}
+
+.column60{
+	width: 60%;
+	height:auto
+}
+
+.column70{
+	width: 70%;
+	height:auto
+}
+
+.column80{
+	width: 80%;
+	height:auto
+}
+
+.columnPhoto{
+	width: 20%;
+	vertical-align: top;
+}
+
+.columnTotal{
+	width: 100%;
+	height:auto
+}
+
+

@@ -1,0 +1,341 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+    <f:view>
+
+         
+
+<h:form id="formUsuario">
+    
+        <p:growl id="mensajes"/> 
+        <p:panel id="pnlUsuario" header="Actualizar Usuario"
+                            style="width:80%;margin: 0px auto;">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <p:commandButton id="btnNuevo" value="Nuevo" icon="ui-icon-document" action="#{MBUsuario.nuevo()}"  ajax="true" update=":formUsuario:pnlPrincipal" />  
+
+                        <p:commandButton id="btnGuardar" value="Guardar"  icon="ui-icon-disk" action="#{MBUsuario.actualizar()}" process="@this,formUsuario" ajax="false" update=":formUsuario:pnlPrincipal,:formUsuario:mensajes" />  
+
+                         <p:commandButton id="btnCancelar" value="Cancelar" icon="ui-icon-close" action="#{MBUsuario.cancelar()}" process="@this" immediate="true" ajax="false" update=":formUsuario:pnlPrincipal" />  
+                        
+                       
+
+                    </p:toolbarGroup>
+                </p:toolbar>
+            
+                <p:panelGrid id="pnlPrincipal"  style="width:100%;margin: 0px auto">
+
+                <p:messages id="messages" />  
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:fieldset legend="Datos del Generales" toggleSpeed="500" toggleable="true">
+                                <p:panelGrid style="width:70%;margin: 0px auto;">
+
+                                
+                               
+                                <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblNombres" value="Nombres" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtNombres"  onkeyup="cambiarMayuscula(this)"
+                                                     value="#{BKUsuario.usuarioFormulario.nombres}" size="50"  required="true" requiredMessage="Nombre es requerido"/>
+                                    </p:column>                                                                       
+
+                                 </p:row>
+                                    
+                                  <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblApellidos" value="Apellidos" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtApellidos"  onkeyup="cambiarMayuscula(this)"
+                                                     value="#{BKUsuario.usuarioFormulario.apellidos}" size="50" required="true" requiredMessage="Apellidos es requerido"/>
+                                    </p:column>                                                                       
+
+                                 </p:row>
+                                    
+                                    
+                                <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblUsuario" value="Usuario" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtUsuario" 
+                                                     value="#{BKUsuario.usuarioFormulario.usuario}" size="50" required="true" requiredMessage="Usuario es requerido"/>
+                                    </p:column>                                                                       
+                                 </p:row>
+
+                                  <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblCorreo" value="Correo" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtCorreo" validatorMessage="Correo invalido ejemplo@company.com"
+                                                     value="#{BKUsuario.usuarioFormulario.correo}" size="50"  required="true" requiredMessage="Correo es requerido">
+                                            <f:validateRegex
+                                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                    </p:column>                                                                       
+                                 </p:row>
+                                 
+                                 
+                                    
+                                   <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblTelefono1" value="Telefono 1" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                         <p:inputMask id="txtTelefono1"   mask="999-999-999"
+                                                     value="#{BKUsuario.usuarioFormulario.telefono1}" size="50" required="true" requiredMessage="Telefono es requerido"/>
+                                    </p:column>                                                                       
+                                 </p:row>
+                                    
+                                    
+                                  <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblTelefono2" value="Telefono 2"  />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                         <p:inputMask id="txtTelefono2"   mask="999-999-999"
+                                                     value="#{BKUsuario.usuarioFormulario.telefono2}" size="50" />
+                                    </p:column>                                                                       
+                                 </p:row>
+                                    
+                                 <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblCargo" value="Cargo" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtCargo"  
+                                                     value="#{BKUsuario.usuarioFormulario.cargo}" size="50" required="true" requiredMessage="Cargo es requerido"/>
+                                    </p:column>                                                                       
+                                 </p:row>
+                                    
+                                 <p:row>
+                                      <p:column>
+                                        <h:outputLabel id="lblOficina" value="Dirección u Oficina" />
+                                    </p:column>
+                                     <p:column colspan="3">
+                                        <p:inputText id="txtOficina"  
+                                                     value="#{BKUsuario.usuarioFormulario.oficina}" size="50" required="true" requiredMessage="Oficina es requerido"/>
+                                    </p:column>                                                                       
+                                 </p:row>
+                                    
+                                <p:row>                                    
+                                   <p:column>
+                                        <h:outputLabel id="lblRol" value="Rol " />	
+                                    </p:column> 
+                                      <p:column colspan="3">
+                                          <p:selectOneMenu id="cbxRol"
+                                                           value="#{BKUsuario.rol}"  style="width:300px">                                                
+                                              <f:selectItems value="#{BKRol.listaRoles}"
+                                                             var="rol" itemLabel="#{rol.descripcion}"
+                                                             itemValue="#{rol.id}" />
+                                        </p:selectOneMenu>
+                                    </p:column>                                         
+                                 </p:row>  
+                                    
+                                 <p:row>
+                                   <p:column>
+                                        <h:outputLabel id="lblInstitucion" value="Institución " />	
+                                    </p:column> 
+                                      <p:column colspan="3">
+                                        <p:selectOneMenu id="cbxInstitucion"
+                                                         value="#{BKUsuario.institucion}"  style="width:300px">                                                
+                                            <f:selectItems value="#{BKUsuario.listaInstituciones}"
+                                                           var="institucion" itemLabel="#{institucion.nombre}"
+                                                           itemValue="#{institucion.id}" />
+                                        </p:selectOneMenu>
+                                    </p:column>      
+                                   
+
+                                 </p:row>   
+                                  
+                                    <p:row>    
+                                     <p:column>
+                                        <h:outputLabel id="lblDepartamento" value="Departamento " />	
+                                    </p:column> 
+                                   <p:column colspan="3">
+                                        <p:selectOneMenu id="cboDepartamento" required="true" 
+                                                          value="#{BKUsuario.usuarioFormulario.departamento}" style="width: 40%"
+                                                requiredMessage="Campo ubigeo departamento es requerido.">
+                                                <f:selectItem itemLabel="Seleccione departamento" itemValue=""/>
+                                                <f:selectItems value="#{BKUsuario.listaDepartamentos}" var="depa"
+                                                               itemLabel="#{depa.nombre}" itemValue="#{depa.codigoDep}" />							
+                                                <p:ajax listener="#{MBUsuario.changeListDepartamentos()}" update="formUsuario:cboProvincia"  />	
+                                        </p:selectOneMenu>
+
+                                  </p:column>    
+
+                              </p:row>
+                             <p:row>    
+                                   <p:column>
+                                        <h:outputLabel id="lblProvincia" value="Provincia " />	
+                                    </p:column> 
+                                  <p:column colspan="3">
+
+                                         <p:selectOneMenu id="cboProvincia" required="true" 
+                                                        value="#{BKUsuario.usuarioFormulario.provincia}" style="width: 40%"
+                                                       requiredMessage="Campo ubigeo provincia es requerido.">
+                                               <f:selectItem itemLabel="Seleccione provincia" itemValue=""/>
+                                               <f:selectItems value="#{BKUsuario.listaProvincias}" var="prov"
+                                                              itemLabel="#{prov.nombre}" itemValue="#{prov.codigoPro}" />					
+                                               <p:ajax listener="#{MBUsuario.changeListProvincias()}" update="formUsuario:cboDistrito"  />	
+                                        </p:selectOneMenu>
+
+                                  </p:column>    
+
+                              </p:row>
+                             <p:row>    
+                                   <p:column>
+                                        <h:outputLabel id="lblDistrito" value="Distrito " />	
+                                    </p:column> 
+                                   <p:column colspan="3">                     
+                                      <p:selectOneMenu id="cboDistrito" required="true" 
+                                                  value="#{BKUsuario.usuarioFormulario.distrito}" style="width: 40%"
+                                                    requiredMessage="Campo ubigeo distrito es requerido.">
+                                            <f:selectItem itemLabel="Seleccione distrito" itemValue=""/>
+                                            <f:selectItems value="#{BKUsuario.listaDistritos}" var="dist"
+                                                           itemLabel="#{dist.nombre}" itemValue="#{dist.codigoDis}" />
+                                    </p:selectOneMenu>
+                                  </p:column>    
+
+                              </p:row>  
+                                    
+                               <p:row>
+                                   <p:column>
+                                        <h:outputLabel id="lblSituacion" value="Estado " />	
+                                    </p:column> 
+                                      <p:column colspan="3">
+                                        <p:selectOneMenu id="cbxSituacion"
+                                                         value="#{BKUsuario.usuarioFormulario.estadoRegistro}"  style="width:200px">                                                
+                                                <f:selectItem  itemLabel="Activo" itemValue="A" />
+                                                <f:selectItem  itemLabel="Desactivado" itemValue="D" />
+                                        </p:selectOneMenu>
+                                    </p:column>      
+                                   
+
+                                 </p:row>   
+                                
+                             </p:panelGrid>
+                              </p:fieldset>
+                        </p:column>
+                        </p:row>     
+
+                       
+
+
+                            </p:panelGrid>
+            
+                            <p:fieldset legend="Documentos" toggleSpeed="500" toggleable="true">
+                                
+                                 <p:panel id="pnlListarUsuario"
+                                           
+                                            style="width: 80%;margin: 10px auto" visible="true"
+                                            widgetVar="listaDocumentos">
+
+                                        <div align="right">
+                                                <p:commandButton value="Adjuntar" icon="ui-icon-document" 
+                                                                 action="#{MBUsuario.nuevoDocumento()}"                                                                 
+                                                                 update=":frmNuevoDocumento:pnlNuevoDocumento"
+                                                                 oncomplete="PF('dlgDocumentos').show();" title="Nuevo Archivo"/>
+                                          </div>
+
+                                         <p:dataTable  paginator="true" rows="10"
+                                                          id="tblUsuarioDocumento"  
+                                                          value="#{BKUsuarioDocumentos.listaUsuarioDocumentos}"
+                                                          var="doc"
+                                                          >
+                                                <p:column headerText="Archivo" >
+                                                    <h:outputText value="#{doc.nombre}"/>
+                                                </p:column>
+                                                <p:column headerText="Descripción" >
+                                                    <h:outputText value="#{doc.comentario}"/>
+                                                </p:column>
+                                                <p:column headerText="Ver" width="50">
+                                                    <p:commandButton id="cmdDownload"   
+                                                                     actionListener="#{MBUsuario.verArchivo}"
+                                                                     ajax="false"
+                                                                     icon="ui-icon-circle-arrow-s" title="Descargar Archivo">
+                                                        <f:attribute name="idUsuarioDocumento" value="#{doc}" />
+                                                        <p:fileDownload value="#{BKUsuarioDocumentos.fileDownload}" />
+                                                    </p:commandButton>
+                                                </p:column>									
+                                                <p:column headerText="Eliminar" width="50">
+                                                    <p:commandButton id="cmdDelDoc" icon="ui-icon-minus"                                                                    
+                                                                     onclick="PF('dlgBorrarDocumento').show();" title="Eliminar Archivo">
+                                                        <f:setPropertyActionListener
+                                                            target="#{BKUsuarioDocumentos.usuarioDocumentoSeleccionado}"
+                                                            value="#{doc}" for="cmdDelDoc">
+                                                        </f:setPropertyActionListener>
+                                                    </p:commandButton>
+                                                </p:column>						
+                                            </p:dataTable>  
+
+                                     </p:panel>
+                            </p:fieldset>    
+                        
+                            
+                            <h:panelGrid>
+                (*) Campos requeridos
+            </h:panelGrid>
+            
+            
+       
+                    </p:panel>
+
+            </h:form>
+        
+             <p:dialog header="Documentos" widgetVar="dlgDocumentos" modal="true"
+                      width="500">
+                <h:form id="frmNuevoDocumento" enctype="multipart/form-data">	
+                    <p:fileUpload value="#{BKUsuarioDocumentos.fileUpload}"
+                                      id="idfileUpload" mode="simple" update="idfileUpload"
+                                      auto="true" sizeLimit="400000" />
+                    <h:panelGrid id="pnlNuevoDocumento" columns="2" width="100%"> 
+                        <p:outputLabel value="Comentario" />
+                        <p:inputTextarea style="width:100%" value="#{BKUsuarioDocumentos.usuarioDocumentoFormulario.comentario}" />
+                        <p:outputLabel value="Fecha" />
+                        <p:calendar id="calFin" value="#{BKUsuarioDocumentos.usuarioDocumentoFormulario.fechaReg}" showOn="button" pattern="dd/MM/yyyy" />
+                    </h:panelGrid>
+                    <br></br>
+                    <div align="right">
+                    <p:commandButton value="Guardar" onclick="PF('dlgDocumentos').hide();" 
+                                     actionListener="#{MBUsuario.guardarDocumento()}"
+                                     update=":formUsuario:tblUsuarioDocumento"
+                                     ajax="false"
+                                     />
+                    <p:commandButton value="Salir" onclick="PF('dlgDocumentos').hide();"/>
+                    </div>
+                </h:form>
+            </p:dialog> 
+            
+            <p:dialog header="Eliminar Documento" widgetVar="dlgBorrarDocumento" modal="true"
+                      width="400">
+                <h:form id="frmBorrarDocumento">
+                    <div align="center">
+                        <h:outputText value="Se eliminará el documento. ¿Desea Continuar?"></h:outputText>
+                    </div>   
+                    <p:spacer height="10px"/>
+                    <div align="center">
+
+                        <p:commandButton value="Si" onclick="PF('dlgBorrarDocumento').hide();" 
+                                         actionListener="#{MBUsuario.eliminarDocumento}" 
+                                         update=":formUsuario:tblUsuarioDocumento"/>
+                        <p:commandButton value="No" onclick="PF('dlgBorrarDocumento').hide();" />
+                    </div>	
+                </h:form>
+            </p:dialog> 
+    </f:view>
+	</ui:define>
+</ui:composition>
+
+
+</html>
